@@ -1,13 +1,13 @@
 package main
 
-import "github.com/gofiber/fiber/v2"
+import (
+	"github.com/gofiber/fiber/v2"
+	routes "github.com/skullblack-strak/sale-page-api/api"
+)
 
 func main() {
-    app := fiber.New()
-
-    app.Get("/", func(c *fiber.Ctx) error {
-        return c.SendString("Hello, World!")
-    })
-
-    app.Listen(":3000")
+	app := fiber.New()
+	api := app.Group("/api")
+	routes.SetupRouter(api)
+	app.Listen(":3000")
 }
